@@ -2,7 +2,13 @@
 
 namespace App\Providers;
 
+use App\Contracts\AuthenticationInterface;
+use App\Contracts\RegistrationInterface;
+use App\Models\PersonalAccessToken;
+use App\Services\RegistrationService;
+use App\Services\SanctumAuthenticationService;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(RegistrationInterface::class, RegistrationService::class);
+        $this->app->singleton(AuthenticationInterface::class, SanctumAuthenticationService::class);
     }
 
     /**
@@ -23,6 +30,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
     }
 }

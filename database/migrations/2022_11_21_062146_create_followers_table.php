@@ -12,13 +12,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('followers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->uuid('follower_id');
+            $table->uuid('followable_id');
+            $table->string('followable_type');
+            $table->enum('status', ['Active', 'Inactive', 'Archived'])->default('Active');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +30,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('followers');
     }
 };
