@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SanctumAuthenticationService implements AuthenticationInterface
 {
-//    public function register(array $user)
-//    {
-//        // TODO: Implement register() method.
-//    }
-
     public function attemptToLogin(array $userCredential): HttpResponseException|string
     {
         //dd($userCredential);

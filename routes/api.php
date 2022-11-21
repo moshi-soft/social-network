@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\LoginController;
+use App\Http\Controllers\API\PageController;
 use App\Http\Controllers\API\RegistrationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,10 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(static function (){
+    Route::prefix('page')->group(function () {
+        Route::post('create', [PageController::class, 'create']);
+    });
 });
 Route::prefix('auth')->group(function () {
     Route::post('register', [RegistrationController::class, 'register']);
     Route::post('login', [LoginController::class, 'login']);
 });
+
