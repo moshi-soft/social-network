@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Contracts\AuthenticationInterface;
+use App\Contracts\PageInterface;
 use App\Contracts\RegistrationInterface;
 use App\Models\PersonalAccessToken;
+use App\Services\PageService;
 use App\Services\RegistrationService;
 use App\Services\SanctumAuthenticationService;
 use Illuminate\Support\ServiceProvider;
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(RegistrationInterface::class, RegistrationService::class);
         $this->app->singleton(AuthenticationInterface::class, SanctumAuthenticationService::class);
+        $this->app->singleton(PageInterface::class, PageService::class);
     }
 
     /**

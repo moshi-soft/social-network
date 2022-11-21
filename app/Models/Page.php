@@ -10,5 +10,5 @@ class Page extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['owener_id', 'page_name', 'status'];
+    protected $fillable = ['owner_id', 'page_name', 'status'];
 }
