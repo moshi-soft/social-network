@@ -14,16 +14,12 @@ class RegistrationResource extends JsonResource
      */
     public function toArray($request)
     {
-        //return parent::toArray($request);
-       // dd($request->all());
-//        print_r($this);
-//        die;
-        //dd($this);
         return [
-            'token_type' => 'Bearer',
-            'name' => $request->name,
+//            'token_type' => 'Bearer',
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
-            'token' => $this['token'],
+//            'token' => $this['token'],
         ];
     }
 }

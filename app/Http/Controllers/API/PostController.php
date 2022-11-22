@@ -23,7 +23,7 @@ class PostController extends Controller
                 $request->validated()['post_content']), 201
             );
         } catch (\Exception $exception) {
-            return response()->error("Couldn't create post: " . $exception->getMessage(), [], 422);
+            return response()->error("Couldn't create post: " . $exception->getMessage(), [], 500);
         }
     }
 
