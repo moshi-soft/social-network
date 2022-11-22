@@ -11,4 +11,9 @@ class Page extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = ['owner_id', 'page_name', 'status'];
+
+    public function posts()
+    {
+        return $this->morphMany(Post::class, 'postable');
+    }
 }
