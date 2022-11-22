@@ -20,7 +20,9 @@ Done.
 ### Base URL
 http://127.0.0.1:8000/api
 ### Header
-`Content-Type`
+`Content-Type:application/json`
+
+`Accept:application/json`
 
 ### Response
 All response in json format
