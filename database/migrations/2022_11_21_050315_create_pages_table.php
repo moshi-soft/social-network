@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->enum('status', ['Active', 'Inactive', 'Archived'])->default('Active');
             $table->softDeletes();
             $table->timestamps();
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 

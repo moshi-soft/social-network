@@ -22,7 +22,7 @@ class PageController extends Controller
         try {
             return response()->success('Successfully page created', $this->page->create($request->validated()['page_name']), 201);
         } catch (\Exception $exception) {
-            return response()->error("Couldn't create page: " . $exception->getMessage(), [], 422);
+            return response()->error("Couldn't create page: " . $exception->getMessage(), [], 500);
         }
     }
 }

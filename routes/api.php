@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\FeedController;
+use App\Http\Controllers\API\FollowController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\PageController;
 use App\Http\Controllers\API\PostController;
@@ -25,7 +27,14 @@ Route::middleware('auth:sanctum')->group(static function () {
     });
     Route::prefix('person')->group(function () {
         Route::post('attach-post', [PostController::class, 'createPostForPerson']);
+        Route::get('feed', [FeedController::class, 'feeds']);
     });
+    Route::prefix('follow')->group(function () {
+        Route::put('person/{personId}', [FollowController::class, 'followPerson']);
+        Route::put('page/{pageId}', [FollowController::class, 'followPage']);
+    });
+
+    Route::post('logout', [LoginController::class, 'logout']);
 });
 Route::prefix('auth')->group(function () {
     Route::post('register', [RegistrationController::class, 'register']);

@@ -16,4 +16,10 @@ class Page extends Model
     {
         return $this->morphMany(Post::class, 'postable');
     }
+
+    public function followers()
+    {
+        return $this->morphMany(Follower::class, 'followable');
+    }
+
 }

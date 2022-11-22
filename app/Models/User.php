@@ -20,7 +20,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
 //        'id',
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -47,5 +48,15 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->morphMany(Post::class, 'postable');
+    }
+
+    public function followers()
+    {
+        return $this->morphMany(Follower::class, 'followable');
+    }
+
+    public function postsAsFeeds()
+    {
+        return $this->hasManyThrough(Post::class, Follower::class, 'follower_id', 'postable_id', 'id', 'followable_id');
     }
 }
