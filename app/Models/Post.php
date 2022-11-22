@@ -11,4 +11,9 @@ class Post extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = ['post_content', 'status', 'postable_id', 'postable_type'];
+
+    public function postable()
+    {
+        return $this->morphTo();
+    }
 }
